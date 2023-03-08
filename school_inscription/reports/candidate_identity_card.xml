@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!--<template id="report_candidate_cards">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <h2> la carte de candidat</h2>
+            </t>
+        </t>
+        <t t-call="school_inscription.report_candidate_cards"/>
+    </template>-->
+
+    <template id="report_candidate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <h2> la carte de candidat</h2>
+                    <p>Nom: <t t-esc="doc.f_name"/></p>
+                    <p>Prénom: <t t-esc="doc.l_name"/></p>
+                    <p>Adresse: <t t-esc="doc.address"/></p>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

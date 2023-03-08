@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="module_category_school_inscription" model="ir.module.category">
+         <field name="name">School Inscription</field>
+         <field name="description">Category For School</field>
+     </record>
+    <record id="group_inscription_central" model="res.groups">
+        <field name="name">Responsable central</field>
+        <field name="category_id" ref="module_category_school_inscription"/>
+        <field name="implied_ids" eval="[(4, ref('group_inscription_regional'))]"/>
+    </record>
+    <record id="group_inscription_regional" model="res.groups">
+        <field name="name">Responsable régional</field>
+        <field name="category_id" ref="module_category_school_inscription"/>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_inscription,access_school_inscription,model_school_inscription_candidate,,1,1,1,1
+access_school_inscription1,access1_school_inscription1,model_school_inscription_inscription,,1,1,1,1
+

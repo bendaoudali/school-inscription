@@ -1,0 +1,118 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="inscription_list_view">
+      <field name="name">school_inscription list</field>
+      <field name="model">school_inscription.inscription</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="num_inscription"/>
+          <field name="date_inscription" />
+          <field name="candidate_ids"/>
+          <field name="state" optional="hide"/>
+        </tree>
+      </field>
+    </record>
+    <!-- explicit graph view definition -->
+
+    <record model="ir.ui.view" id="inscription_graph_view">
+      <field name="name">school_inscription graph</field>
+      <field name="model">school_inscription.inscription</field>
+      <field name="arch" type="xml">
+        <graph string="school_inscription">
+          <field name="num_inscription" type="col"/>
+          <field name="date_inscription" type="row"/>
+        </graph>
+      </field>
+    </record>
+
+    <!-- explicit pivot view definition -->
+
+    <record model="ir.ui.view" id="inscription_pivot_view">
+      <field name="name">school_inscription graph</field>
+      <field name="model">school_inscription.inscription</field>
+      <field name="arch" type="xml">
+        <pivot string="school_inscription">
+          <field name="num_inscription" type="row"/>
+          <field name="date_inscription" type="col"/>
+        </pivot>
+      </field>
+    </record>
+     <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="inscription_form_view">
+      <field name="name">school_inscription form</field>
+      <field name="model">school_inscription.inscription</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="to_validate" type="object" class="oe_highlight" string="Valider"
+            attrs="{'invisible':[('state','in', ('l2', 'l3', 'l4'))]}"/>
+            <button name="to_confirm" type="object" class="oe_highlight" string="Confirmer"
+                    attrs="{'invisible':[('state','in', ('l1', 'l3', 'l4'))]}"
+                    groups="school_inscription.group_inscription_central"/>
+            <button name="to_cancel" type="object" class="oe_highlight" string="Annuler"
+                    attrs="{'invisible':[('state','in', ('l4'))]}"/>
+            <field name="state" widget="statusbar" nolabel="1"> </field>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                <field name="num_inscription"/>
+                <field name="date_inscription"/>
+              </group>
+            </group>
+            <notebook>
+                  <page string="Liste des candidats">
+                    <field name="candidate_ids"/>
+                  </page>
+                </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="inscription_action_window">
+      <field name="name">Inscription window</field>
+      <field name="res_model">school_inscription.inscription</field>
+      <field name="view_mode">tree,form,graph,pivot</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="school_inscription.action_server">
+      <field name="name">school_inscription server</field>
+      <field name="model_id" ref="model_school_inscription_school_inscription"/>
+      <field name="state">code</field>
+      <field name="code">s
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="School_inscription" id="school_inscription.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Inscriptions" id="school_inscription_inscription_cat" parent="school_inscription.menu_root"/>
+    <!--
+    <menuitem name="Menu 2" id="school_inscription.menu_2" parent="school_inscription.menu_root"/>
+    -->
+    <!-- actions -->
+
+    <menuitem name="Liste des inscription" id="school_inscription_inscription_list" parent="school_inscription_inscription_cat"
+              action="inscription_action_window"/>
+    <!--
+    <menuitem name="Server to list" id="school_inscription" parent="school_inscription.menu_2"
+              action="school_inscription.action_server"/>
+-->
+  </data>
+</odoo>

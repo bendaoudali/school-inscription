@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <report
+            id="report_candidate_car"
+            string="Candidate card"
+            model="school_inscription.candidate"
+            report_type="qweb-pdf"
+            name="school_inscription.report_candidate"
+            file="school_inscription.report_candidate"
+    />
+</odoo>

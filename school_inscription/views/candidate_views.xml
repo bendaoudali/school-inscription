@@ -1,0 +1,97 @@
+<odoo>
+  <data>
+    <!-- explicit form view definition -->
+
+    <record model="ir.ui.view" id="candidate_list_view">
+      <field name="name">school_inscription list</field>
+      <field name="model">school_inscription.candidate</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="f_name"/>
+          <field name="l_name"/>
+          <field name="sexe"/>
+          <field name="identity_car" optional="hide"/>
+          <field name="birthday"/>
+          <field name="address" optional="hide"/>
+          <field name="email" optional="hide"/>
+          <field name="phone" optional="hide"/>
+          <field name="picture_identity" widget="image" options="{'size': [150, 150]}" optional="hide"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="candidate_form_view">
+      <field name="name">school_inscription form</field>
+      <field name="model">school_inscription.candidate</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="f_name"/>
+                <field name="l_name"/>
+                <field name="sexe"/>
+                <field name="identity_car"/>
+                <field name="country"/>
+                <field name="picture_identity" widget="image" options="{'size': [150, 150]}"/>
+              </group>
+            </group>
+            <group>
+              <group>
+                <field name="birthday"/>
+                <field name="address"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="region"/>
+                <field name="inscription_id"/>
+                <field name="copy_identity_card" widget="image" options="{'size': [150, 150]}"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="candidate_action_window">
+      <field name="name">Candidate window</field>
+      <field name="res_model">school_inscription.candidate</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="school_inscription.action_server">
+      <field name="name">school_inscription server</field>
+      <field name="model_id" ref="model_school_inscription_school_inscription"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="School_inscription" id="school_inscription.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Candidats" id="school_inscription_candidate_cat" parent="school_inscription.menu_root"/>
+    <!--
+    <menuitem name="Menu 2" id="school_inscription.menu_2" parent="school_inscription.menu_root"/>
+    -->
+    <!-- actions -->
+
+    <menuitem name="Liste des candidats" id="school_inscription_candidate_list" parent="school_inscription_candidate_cat"
+              action="candidate_action_window"/>
+    <!--
+    <menuitem name="Server to list" id="school_inscription" parent="school_inscription.menu_2"
+              action="school_inscription.action_server"/>
+-->
+  </data>
+</odoo>
